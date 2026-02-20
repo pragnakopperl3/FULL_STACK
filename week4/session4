@@ -1,0 +1,62 @@
+===============session 4================
+/*1. Write SELECT queries to display all records. 
+2.  Write queries using aggregate functions.
+3. Sort data and display based in ascending/descending order of the VTU number.
+4. Display student records belonging to a particular department.
+5. Map VTU no. with course name and faculty using joins.
+*/
+-- Display all students
+SELECT * FROM Students;
+-- Display all courses
+SELECT * FROM Course;
+-- Count total number of students
+SELECT COUNT(*) AS Total_Students FROM Students;
+-- Count unique departments
+SELECT COUNT(DISTINCT Department) AS Department_Count FROM Students;
+-- Find the highest Faculty ID assigned
+SELECT MAX(Faculty_Id) AS Highest_Faculty_ID FROM Course;
+-- Sort - Ascending order (Default)
+SELECT * FROM Students ORDER BY VTU_Number ASC;
+-- Sort - in Descending order
+SELECT * FROM Students ORDER BY VTU_Number DESC;
+-----Display student records belonging to a particular department.
+SELECT * FROM Students WHERE Department = 'CSE';
+----Inner Join:-----
+SELECT  
+    s.VTU_Number,  
+    s.Name AS Student_Name,  
+    c.Course_Name,  
+    c.Faculty_Id,  
+    c.Faculty_Email  
+FROM Students s
+INNER JOIN Course c ON s.VTU_Number = c.Student_ID;
+
+----Left Join:
+SELECT  
+    s.VTU_Number,  
+    s.Name,  
+    c.Course_Name  
+FROM Students s
+LEFT JOIN Course c ON s.VTU_Number = c.Student_ID;
+----right join----
+
+SELECT  
+    s.Name,  
+    c.Course_Code,  
+    c.Course_Name  
+FROM Students s
+RIGHT JOIN Course c ON s.VTU_Number = c.Student_ID;
+
+----full join-----
+SELECT  
+    s.Name,  
+    c.Course_Name  
+FROM Students s
+FULL OUTER JOIN Course c 
+    ON s.VTU_Number = c.Student_ID;
+
+------Cross Join(Cartesian Product):-----
+
+SELECT s.Name, c.Course_Name
+FROM Students AS s
+CROSS JOIN Course AS c;
