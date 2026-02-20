@@ -1,0 +1,17 @@
+/*1. Write SELECT queries to display all records. 
+2.  Write queries using aggregate functions.
+3. Sort data and display based in ascending/descending order of the VTU number.
+4. Display student records belonging to a particular department.
+5. Map VTU no. with course name and faculty using joins.
+*/ 
+ select*from course 
+ ------WHERE clause--------
+SELECT * FROM Students WHERE Department = 'CSE';
+----ORDER BY Clause (Sorting):-----
+SELECT * FROM Course ORDER BY Course_Name ASC;
+----LIKE Clause (Pattern Matching):----
+SELECT Name, Email FROM Students WHERE Email LIKE '%@mail.com';
+-----top Clause (Restricting Results):----\
+SELECT TOP 3 *FROM Students;
+-----GROUP BY & HAVING Clause (Aggregating):
+SELECT Department, COUNT(*) as Total_Students FROM Students GROUP BY Department HAVING COUNt(*) 
